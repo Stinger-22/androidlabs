@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">labthree</string>
+    <string name="lily_s_gallery">Lily\'s Gallery</string>
+    <string name="gallery_more">More options</string>
+    <string name="avatar_button">Avatar button</string>
+    <string name="category_name">%1$s</string>
+    <string name="category_number_of_photos">%1$d photos</string>
+</resources>
