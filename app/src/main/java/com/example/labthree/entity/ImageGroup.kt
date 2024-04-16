@@ -1,15 +1,19 @@
 package com.example.labthree.entity
 
+import com.example.labthree.db.Image
+import com.example.labthree.db.ImageDatabase
+
 class ImageGroup(
     val name: String,
-    val numberOfPhotos: Int
+    val images: List<Image>
     ) {
 
     companion object {
-        fun createImageGroups(): ArrayList<ImageGroup> {
+        fun createImageGroups(db: ImageDatabase): ArrayList<ImageGroup> {
             val groups = ArrayList<ImageGroup>()
-            groups.add(ImageGroup("This month", 6))
-            groups.add(ImageGroup("December", 9))
+            val dao = db.imageDao()
+            groups.add(ImageGroup("This month", dao.findByMonthAndYear(4, 2024)))
+            groups.add(ImageGroup("March", dao.findByMonthAndYear(3, 2024)))
             return groups
         }
     }

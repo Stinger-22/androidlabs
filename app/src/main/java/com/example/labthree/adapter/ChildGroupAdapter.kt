@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.labthree.R
+import com.example.labthree.db.Image
 
-class ChildGroupAdapter(private val numberOfPhotos: Int) : RecyclerView.Adapter<ChildGroupAdapter.ViewHolder>() {
+class ChildGroupAdapter(private val images: List<Image>) : RecyclerView.Adapter<ChildGroupAdapter.ViewHolder>() {
 
     private lateinit var clickListener: OnItemClickListener
 
@@ -35,7 +36,7 @@ class ChildGroupAdapter(private val numberOfPhotos: Int) : RecyclerView.Adapter<
     }
 
     override fun getItemCount(): Int {
-        return numberOfPhotos;
+        return images.size;
     }
 
     override fun onBindViewHolder(holder: ChildGroupAdapter.ViewHolder, position: Int) {
