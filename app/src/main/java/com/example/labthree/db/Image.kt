@@ -2,6 +2,7 @@ package com.example.labthree.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.labthree.api.ImageDTO
 import java.util.Date
 
 @Entity(tableName = "image")
@@ -15,6 +16,9 @@ class Image (
     val size: Float,
     val place: String
 ){
+    constructor(image: ImageDTO) : this(0, image.title, image.description, image.year, image.month, image.day, image.size, image.place) {
+    }
+
     override fun toString(): String {
         return "Image(id=$id, title='$title', description='$description', year=$year, month=$month, day=$day, size=$size, place='$place')"
     }

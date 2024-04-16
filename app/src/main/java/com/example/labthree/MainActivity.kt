@@ -3,6 +3,7 @@ package com.example.labthree
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.example.labthree.adapter.CategoriesAdapter
 import com.example.labthree.adapter.GroupsAdapter
+import com.example.labthree.api.ImageDTO
+import com.example.labthree.api.TestApiService
 import com.example.labthree.db.Image
 import com.example.labthree.db.ImageDatabase
 import com.example.labthree.entity.ImageCategory
@@ -28,10 +31,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-
         createDB()
 //        testDB()
         fillDB()
+        loadData()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -50,6 +53,35 @@ class MainActivity : AppCompatActivity() {
         val adapterGroups = GroupsAdapter(imageGroups)
         rvGroups.adapter = adapterGroups
         rvGroups.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+    }
+
+    private fun loadData() {
+        Log.d("API", "loadData")
+        val service = TestApiService()
+        service.getImages(object : TestApiService.ImageDTOCallback {
+            override fun onSuccess(image: ImageDTO) {
+                displayImage(image)
+                val dao = db.imageDao()
+                dao.insert(Image(image))
+            }
+            override fun onFailure() {
+                displayError()
+            }
+        })
+    }
+
+    private fun displayImage(image: ImageDTO) {
+        Log.d("API", "${image.title}")
+        Log.d("API", "${image.description}")
+        Log.d("API", "${image.year}")
+        Log.d("API", "${image.month}")
+        Log.d("API", "${image.day}")
+        Log.d("API", "${image.size}")
+        Log.d("API", "${image.place}")
+    }
+    private fun displayError() {
+        Log.d("API", "error loading data")
+        Toast.makeText(MainActivity@ this, "Failed to load data", Toast.LENGTH_LONG).show()
     }
 
     private fun createDB() {
