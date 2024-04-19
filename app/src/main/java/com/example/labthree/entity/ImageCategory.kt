@@ -5,7 +5,7 @@ class ImageCategory(
     val numberOfPhotos: Int) {
 
     companion object {
-        fun createImageCategories(): ArrayList<ImageCategory> {
+        fun createImageCategories(): List<ImageCategory> {
             val categories = ArrayList<ImageCategory>()
             categories.add(ImageCategory("Favourites", 252))
             categories.add(ImageCategory("Travel", 346))

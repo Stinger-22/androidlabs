@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.labthree.R
+import com.example.labthree.db.Catalog
 import com.example.labthree.entity.ImageCategory
 
-class CategoriesAdapter(private val categories: List<ImageCategory>) : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
+class CategoriesAdapter(private val categories: List<Catalog>) : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val categoryTextView = itemView.findViewById<TextView>(R.id.categoryName)
@@ -27,11 +28,11 @@ class CategoriesAdapter(private val categories: List<ImageCategory>) : RecyclerV
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val imageCategory: ImageCategory = categories.get(position)
+        val catalog: Catalog = categories.get(position)
         val categoryTextView = holder.categoryTextView
-        categoryTextView.setText(imageCategory.name)
+        categoryTextView.setText(catalog.title)
         val numberPhotosTextView = holder.numberPhotosTextView
-        numberPhotosTextView.setText("" + imageCategory.numberOfPhotos + " photos")
+        numberPhotosTextView.setText("" + catalog.n + " photos")
     }
 
 }

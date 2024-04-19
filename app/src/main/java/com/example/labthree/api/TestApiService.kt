@@ -42,8 +42,27 @@ class TestApiService {
         })
     }
 
+    fun getCatalogs(callback: CatalogDTOCallback) {
+        api.getCatalogs(SECRET_KEY).enqueue(object : Callback<List<CatalogDTO>> {
+            override fun onResponse(call: Call<List<CatalogDTO>>, response: Response<List<CatalogDTO>>) {
+                if (response.code() == 200 && response.body() != null)
+                    callback.onSuccess(response.body()!!)
+                else
+                    callback.onFailure()
+            }
+            override fun onFailure(call: Call<List<CatalogDTO>>, t: Throwable) {
+                callback.onFailure()
+            }
+        })
+    }
+
     interface ImageDTOCallback {
         fun onSuccess(imageDTO: ImageDTO)
+        fun onFailure()
+    }
+
+    interface CatalogDTOCallback {
+        fun onSuccess(catalogs: List<CatalogDTO>)
         fun onFailure()
     }
 }
