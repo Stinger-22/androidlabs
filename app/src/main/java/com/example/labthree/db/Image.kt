@@ -2,8 +2,7 @@ package com.example.labthree.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.labthree.api.ImageDTO
-import java.util.Date
+import com.example.labthree.data.model.ImageDTO
 
 @Entity(tableName = "image")
 class Image (

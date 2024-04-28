@@ -2,7 +2,7 @@ package com.example.labthree.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.labthree.api.CatalogDTO
+import com.example.labthree.data.model.CatalogDTO
 
 @Entity(tableName = "catalog")
 class Catalog (

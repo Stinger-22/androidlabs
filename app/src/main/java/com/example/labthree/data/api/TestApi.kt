@@ -1,5 +1,7 @@
-package com.example.labthree.api
+package com.example.labthree.data.api
 
+import com.example.labthree.data.model.CatalogDTO
+import com.example.labthree.data.model.ImageDTO
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header

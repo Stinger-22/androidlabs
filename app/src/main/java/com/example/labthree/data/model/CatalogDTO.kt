@@ -1,4 +1,4 @@
-package com.example.labthree.api
+package com.example.labthree.data.model
 
 import com.google.gson.annotations.SerializedName
 

@@ -8,10 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.labthree.BottomFragment
+import com.example.labthree.ui.BottomFragment
 import com.example.labthree.R
 import com.example.labthree.entity.ImageGroup
-import com.google.android.material.internal.ContextUtils.getActivity
 
 class GroupsAdapter(private val groups: List<ImageGroup>) : RecyclerView.Adapter<GroupsAdapter.ViewHolder>() {
 
